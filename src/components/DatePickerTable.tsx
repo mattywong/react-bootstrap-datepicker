@@ -9,7 +9,7 @@ import {
 } from "date-fns";
 import classNames from "classnames";
 import { generateMonthDatesArray, chunk } from "../util";
-import { Modifiers } from "./types";
+import { Modifiers, KeyValue } from "./types";
 
 export const tdStyles: React.HTMLAttributes<
   HTMLTableDataCellElement
@@ -20,12 +20,27 @@ export const tdStyles: React.HTMLAttributes<
   position: "relative",
 };
 
+// const DAYS = Array.from({ length: 7 }).map((_, idx) => {
+//   return {
+//     value: idx,
+//     long: new Intl.DateTimeFormat("en-au", {
+//       day: "long",
+//     }).format(new Date(0, idx)),
+//     short: new Intl.DateTimeFormat("en-au", {
+//       day: "short",
+//     }).format(new Date(0, idx)),
+//   };
+// });
+
+// console.log(DAYS);
+
 export interface DatePickerTableProps {
   date: Date;
   modifiers?: Modifiers;
 
   onDayClick: (date: Date) => void;
 }
+
 export const DatePickerTable: React.FC<DatePickerTableProps> = ({
   date,
   modifiers,

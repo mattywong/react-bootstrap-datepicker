@@ -52,6 +52,7 @@ export const CalendarDateRange: React.FC<CalendarDateRangeProps> = ({
             setState((prev) => ({
               ...prev,
               start: date,
+              end: prev.start,
             }));
             return;
           }

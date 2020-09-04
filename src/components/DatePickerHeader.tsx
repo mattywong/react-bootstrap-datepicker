@@ -1,11 +1,7 @@
 import * as React from "react";
 import { addMonths, subMonths, setMonth } from "date-fns";
 import { DropdownMenuBtn } from "./DropdownMenuBtn";
-
-type MonthKeyValue = {
-  value: number;
-  label: string;
-};
+import { KeyValue } from "./types";
 
 const MONTHS = Array.from({ length: 12 }).map((_, idx) => {
   return {
@@ -13,7 +9,7 @@ const MONTHS = Array.from({ length: 12 }).map((_, idx) => {
     label: new Intl.DateTimeFormat("en-au", {
       month: "long",
     }).format(new Date(0, idx)),
-  } as MonthKeyValue;
+  } as KeyValue;
 });
 
 const useDropdown = () => {
