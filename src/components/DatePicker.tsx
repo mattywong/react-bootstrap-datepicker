@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./styles.css";
 import { createGlobalStyle } from "styled-components";
 import {
   getYear,
@@ -98,6 +97,7 @@ const generateMonthDatesArray = (date): Date[] => {
   return calendarRows;
 };
 
+
 export const DatePicker = ({ defaultValue = new Date(), months = 1 }) => {
   const [date, setDate] = React.useState(defaultValue);
 
@@ -113,8 +113,13 @@ export const DatePicker = ({ defaultValue = new Date(), months = 1 }) => {
     <>
       <GlobalStyles />
 
-      <div className="date-picker">
-        <div className="btn-group  d-flex">
+      <div
+        style={{
+          width: 400,
+        }}
+        className="date-picker"
+      >
+        <div className="btn-group w-100 d-flex">
           <button
             className="btn btn-dark flex-grow-0"
             onClick={(e) => {

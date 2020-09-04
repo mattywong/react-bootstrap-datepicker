@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { render } from 'react-dom';
+import * as React from "react";
+import { render } from "react-dom";
 
-import { DatePicker } from './DatePicker';
+import { CalendarRange } from "./App";
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 render(
-  <div>
-    <DatePicker months={2} />
-  </div>,
-  rootElement,
+  <>
+    <CalendarRange />
+  </>,
+  rootElement
 );
