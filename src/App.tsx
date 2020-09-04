@@ -10,11 +10,11 @@ export const CalendarRange = () => {
     };
   });
   return (
-    <div>
+    <div className="container pt-4">
       <DatePicker
         startDate={state.startDate}
         endDate={state.endDate}
-        months={1}
+        // months={1}
       />
     </div>
   );
