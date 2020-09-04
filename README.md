@@ -1,2 +1,1 @@
-# react-bootstrap-datepicker
-Created with CodeSandbox
+# react-bootstrap-typeahead

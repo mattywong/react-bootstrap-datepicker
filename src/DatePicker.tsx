@@ -1,6 +1,6 @@
-import * as React from 'react';
-import './styles.css';
-import { createGlobalStyle } from 'styled-components';
+import * as React from "react";
+import "./styles.css";
+import { createGlobalStyle } from "styled-components";
 import {
   getYear,
   getMonth,
@@ -17,13 +17,13 @@ import {
   isLastDayOfMonth,
   startOfMonth,
   endOfMonth,
-} from 'date-fns';
+} from "date-fns";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
 const chunk = <T extends unknown>(arr: T[], size: number) => {
   return Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-    arr.slice(i * size, i * size + size),
+    arr.slice(i * size, i * size + size)
   );
 };
 
@@ -88,7 +88,7 @@ const generateMonthDatesArray = (date): Date[] => {
     if (idx > arr.length - remainder - 1) {
       return addDays(
         arr[arr.length - 1 - remainder] as Date,
-        idx - arr.length + 1 + remainder,
+        idx - arr.length + 1 + remainder
       ) as Date;
     }
 
@@ -137,9 +137,9 @@ export const DatePicker = ({ defaultValue = new Date(), months = 1 }) => {
           return (
             <div key={monthIdx}>
               <h1>
-                {new Intl.DateTimeFormat('en-au', {
-                  month: 'long',
-                  year: 'numeric',
+                {new Intl.DateTimeFormat("en-au", {
+                  month: "long",
+                  year: "numeric",
                 }).format(monthsArray[monthIdx][1][0])}
               </h1>
               <table>
@@ -162,8 +162,8 @@ export const DatePicker = ({ defaultValue = new Date(), months = 1 }) => {
                           return (
                             <td key={dayIdx}>
                               <button
-                                className={classNames('date-picker__day-btn', {
-                                  'is-today': isToday(day),
+                                className={classNames("date-picker__day-btn", {
+                                  "is-today": isToday(day),
                                 })}
                               >
                                 {getDate(day)}
