@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { DatePicker } from "./components/DatePicker";
+import { CalendarDateRange } from "./components/CalendarDateRange";
 
 export const CalendarRange = () => {
   const [state, setState] = React.useState(() => {
@@ -11,7 +11,7 @@ export const CalendarRange = () => {
   });
   return (
     <div className="container pt-4">
-      <DatePicker
+      <CalendarDateRange
         startDate={state.startDate}
         endDate={state.endDate}
         // months={1}
