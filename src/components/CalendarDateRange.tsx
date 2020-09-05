@@ -34,7 +34,7 @@ export const CalendarDateRange: React.FC<CalendarDateRangeProps> = ({
     <div
       className="border p-3"
       style={{
-        width: "16rem",
+        width: "100%",
       }}
     >
       <pre>{JSON.stringify(modifier, null, 2)}</pre>

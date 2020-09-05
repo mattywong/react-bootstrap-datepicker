@@ -1,12 +1,13 @@
 import * as React from "react";
 import { render } from "react-dom";
 
-import { CalendarRange } from "./App";
+import { App } from "./App";
 
 const rootElement = document.getElementById("root");
+
 render(
   <>
-    <CalendarRange />
+    <App />
   </>,
   rootElement
 );
