@@ -14,6 +14,9 @@
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
     "react-router-dom": "^5.2.0",
+    "slate": "^0.58.4",
+    "slate-history": "^0.58.4",
+    "slate-react": "^0.58.4",
     "store2": "^2.12.0"
   },
   "devDependencies": {

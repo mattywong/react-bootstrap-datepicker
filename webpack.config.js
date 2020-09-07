@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = {
   entry: ["react-hot-loader/patch", "./src/index.tsx"],
+  devtool: "eval-cheap-module-source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
