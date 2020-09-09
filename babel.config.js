@@ -9,5 +9,5 @@ module.exports = {
       },
     ],
   ],
-  // plugins: ["react-hot-loader/babel"],
+  plugins: ["react-hot-loader/babel", "babel-plugin-styled-components"],
 };

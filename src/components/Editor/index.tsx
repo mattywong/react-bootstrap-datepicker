@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { renderToStaticMarkup } from "react-dom/server";
-
 import {
   createEditor,
   Node,
@@ -15,18 +13,10 @@ import { Slate, Editable, withReact, ReactEditor } from "slate-react";
 
 import { withHistory } from "slate-history";
 
-import { withMdShortcuts } from "./withMdShortcuts";
+import { withMdShortcuts, withPasteHtml, withParagraphs } from "./hocs";
 
-const Leaf = (props) => {
-  return (
-    <span
-      {...props.attributes}
-      style={{ fontWeight: props.leaf.bold ? "bold" : "normal" }}
-    >
-      {props.children}
-    </span>
-  );
-};
+import { Leaf } from "./ui/Leaf";
+import { css } from "styled-components";
 
 const CustomEditor = {
   isBoldMarkActive(editor: ReactEditor) {
@@ -81,14 +71,10 @@ export const Editor = ({}) => {
         ];
   });
 
-  const [tagSearch, setTagSearch] = React.useState("");
-
-  const [tags, setTags] = React.useState(() => {
-    return [];
-  });
-
   const editor = React.useMemo(() => {
-    const _editor = withReact(withMdShortcuts(withHistory(createEditor())));
+    const _editor = withPasteHtml(
+      withParagraphs(withReact(withMdShortcuts(withHistory(createEditor()))))
+    );
 
     const { isInline } = _editor;
     _editor.isInline = (element) => {
@@ -106,6 +92,7 @@ export const Editor = ({}) => {
   const renderElement = React.useCallback((props) => {
     switch (props.element.type) {
       case "p":
+      case "paragraph":
         return <p {...props} />;
       case "h1":
         return <h1 {...props} />;
@@ -161,13 +148,15 @@ export const Editor = ({}) => {
       }}
     >
       <section
-        style={{
-          border: "1px solid gray",
-          borderRadius: "1rem",
-          height: "1000px",
-          display: "flex",
-          flexDirection: "column",
-        }}
+        css={`
+          border: 1px solid gray;
+          border-radius: 1rem;
+          max-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          padding: 2rem;
+          width: 100%;
+        `}
         className="p-3"
       >
         <nav className="mb-3">
@@ -179,15 +168,59 @@ export const Editor = ({}) => {
             Bold
           </button>
         </nav>
+
         <Editable
           renderElement={renderElement}
           renderLeaf={renderLeaf}
-          style={{
-            marginTop: "auto",
-            height: "100%",
-            outline: 0,
-            overflow: "auto",
-          }}
+          css={css`
+            margin-top: auto;
+            height: 100%;
+            flex: 1 1 100%;
+            outline: 0;
+            overflow: auto;
+
+            font-family: Lato;
+
+            // ${(p) => p.theme.displayBaseline()};
+
+            // background-attachment: local;
+            // background-image: linear-gradient(#e4e4e4 1px, transparent 1px);
+            // background-size: auto 24px;
+
+            h1 {
+              // ${(p) => p.theme.setFontWithRhythm("Lato", 2.074)};
+              // margin-bottom: ${(props) => props.theme.rhythmSizing(3)}rem;
+
+              font-family: 4.3em;
+            }
+
+            h2 {
+              // ${(p) => p.theme.setFontWithRhythm("Lato", 1.728)};
+              // margin-bottom: ${(props) => props.theme.rhythmSizing(1)}rem;
+
+              font-family: 3.583em;
+            }
+
+            h3 {
+              // ${(p) => p.theme.setFontWithRhythm("Lato", 1.44)};
+              // margin-bottom: ${(props) => props.theme.rhythmSizing(1)}rem;
+            }
+
+            // h4 {
+            //   ${(p) => p.theme.setFontWithRhythm("Lato", 1.2)};
+            //   margin-bottom: ${(props) => props.theme.rhythmSizing(1)}rem;
+            // }
+
+            // h5 {
+            //   ${(p) => p.theme.setFontWithRhythm("Lato", 0.833)};
+            //   text-transform: uppercase;
+            // }
+
+            // p {
+            //   ${(p) => p.theme.setFontWithRhythm("Lato", 1)};
+            //   margin-bottom: ${(props) => props.theme.rhythmSizing(1.5)}rem;
+            // }
+          `}
           onKeyDown={(event: React.KeyboardEvent) => {
             if (!event.ctrlKey) {
               return;
